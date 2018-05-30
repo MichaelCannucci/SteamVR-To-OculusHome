@@ -38,10 +38,6 @@ def createManifest(item):
     with open(manifestFolder, "w") as f:
         json.dump(json_game, f)
 
-def removeImages(folder):
-    for image in os.listdir(folder):
-        os.remove(folder + '\\' + image)
-
 def sha256(img):
     with open(img, 'rb') as f:
         h = hashlib.sha256(f.read())
@@ -57,8 +53,6 @@ def createAssetManifest(item):
     manifestFolder = oculusPath + r"CoreData\\Manifests\\" + canonicalName + ".json"
     print("Creating images for {}".format(item[1]))
     #Check if folder exists
-    if os.path.exists(assetFolder):
-        removeImages(assetFolder)
     if not os.path.exists(assetFolder):
         os.makedirs(assetFolder)
     #Save all images in their respective folders
