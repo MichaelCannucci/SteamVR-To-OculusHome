@@ -1,0 +1,16 @@
+{
+	"canonicalName": "",
+	"displayName": "",
+	"files": {
+		
+	},
+	"firewallExceptionsRequired": false,
+	"isCore": false,
+	"launchFile": "",
+	"launchParameters": "",
+	"manifestVersion": 0,
+	"packageType": "APP",
+	"thirdParty": true,
+	"version": "1",
+	"versionCode": 1
+}

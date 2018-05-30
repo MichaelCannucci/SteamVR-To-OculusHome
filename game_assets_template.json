@@ -1,0 +1,19 @@
+{
+  "files": {
+
+  },
+  "packageType": "ASSET_BUNDLE",
+  "isCore": false,
+  "appId": null,
+  "canonicalName":"",
+  "launchFile": null,
+  "launchParameters": null,
+  "launchFile2D": null,
+  "launchParameters2D": null,
+  "version": "1",
+  "versionCode": 1,
+  "redistributables": null,
+  "firewallExceptionsRequired": false,
+  "thirdParty": true,
+  "manifestVersion": 0
+}
