@@ -54,7 +54,6 @@ def addGameFolder(appids):
                     except KeyError:
                         #Default to first key
                         exec = execKey[b"0"][b"executable"]
-                print(exec)
                 completePath = "{}/{}".format(installdir.decode(),exec.decode())
                 completePath = appidFolder[appid[0]] + completePath
                 completePath = re.sub(r"(:\\\\)|(\\\\)|(\\)|[:/]", '_', completePath).replace(".exe","").replace(" ","")#Ugly af
@@ -64,6 +63,7 @@ def createManifest(info):
     json_game = json.load(open("game_template.json"))
     displayName = info[1]
     canonicalName = info[3]
+    print("Creating manifest for {}".format(info[1]))
     manifestFolder = oculusPath + r"CoreData\\Manifests\\" + canonicalName + ".json"
     json_game["canonicalName"] = canonicalName
     json_game["displayName"] = displayName
@@ -133,16 +133,16 @@ def createAssetManifest(info):
 steamPath = findPath(r"SOFTWARE\WOW6432Node\Valve\Steam",1,1)
 oculusPath = findPath(r"SOFTWARE\WOW6432Node\Oculus VR, LLC\Oculus",0,1)
 vrmanifest = importVRManifest()
-# print("Creating Manifests")
-# for appmanifest in vrmanifest:
-#     createManifest(appmanifest)
-#     createAssetManifest(appmanifest)
-# print("Finished creating manifests, restarting oculus service")
-# #Admin Privileges are needed
-# service_name = "Oculus VR Runtime Service"
-# try:
-#     win32serviceutil.StopService(service_name)
-#     win32serviceutil.StartService(service_name)
-# except:
-#     print("could not stop \'{}\', please restart it manualy".format(service_name))
-# input('Press Any Key to exit')
+print("Creating Manifests")
+for appmanifest in vrmanifest:
+    createManifest(appmanifest)
+    createAssetManifest(appmanifest)
+print("Finished creating manifests, restarting oculus service")
+#Admin Privileges are needed
+service_name = "Oculus VR Runtime Service"
+try:
+    win32serviceutil.StopService(service_name)
+    win32serviceutil.StartService(service_name)
+except:
+    print("could not stop \'{}\', please restart it manualy".format(service_name))
+input('Press Any Key to exit')
