@@ -1,7 +1,8 @@
 from winreg import ConnectRegistry, OpenKey, HKEY_LOCAL_MACHINE, EnumValue
 from PIL import Image
 from io import BytesIO
-import re, os, json, requests, hashlib, win32serviceutil, appinfo, traceback, win32ui, win32gui, win32con, win32api
+from steamfiles import appinfo
+import re, os, json, requests, hashlib, win32serviceutil, traceback, win32ui, win32gui, win32con, win32api, argparse
 
 steam_header_base = "https://steamcdn-a.akamaihd.net/steam/apps/"
 
