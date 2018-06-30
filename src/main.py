@@ -60,7 +60,7 @@ def fillLocations(appids):
             except KeyError:
                 #None steam app
                 completePath = game["launch"]
-            completePath = re.sub(r"(:\\|\\| |_|\.|/)", '_', completePath).replace("_exe","")#Ugly af
+            completePath = re.sub(r"(:\\|\\|_|\.|/)", '_', completePath).replace(' ','').replace("_exe","")#Ugly af
             game["path"] = completePath
 
 def appidLocation():
@@ -87,7 +87,7 @@ def sha256(img):
         return h.hexdigest()
 
 def createManifest(info):
-    json_game = json.load(open("game_template.json"))
+    json_game = json.load(open("src/game_template.json"))
     displayName = info["name"]
     canonicalName = info["path"]
     print("Creating manifest for {}".format(info["name"]))
@@ -171,7 +171,7 @@ def createAssetManifest(info):
     hexOrg = sha256(assetFolder + r"\original.png")
     hexSmall = sha256(assetFolder + r"\small_landscape_image.jpg")
     #Create asset manifest
-    json_game_asset = json.load(open("game_assets_template.json"))
+    json_game_asset = json.load(open("src/game_assets_template.json"))
     json_game_asset["files"]["cover_landscape_image.jpg"] = hexLand
     json_game_asset["files"]["cover_landscape_image_large.jpg"] = hexOrg
     json_game_asset["files"]["cover_square_image.jpg"] = hexSquare
